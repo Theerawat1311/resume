@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume</title>
+<style>
+  /* ============================================
+     Edit your content in the HTML below (inside <body>)
+     Edit colors/fonts via the CSS variables below
+     ============================================ */
+  :root {
+    --sidebar-bg: #16213E;
+    --sidebar-text: #E9EAF0;
+    --sidebar-muted: #8D93B0;
+    --accent: #D4A24E;
+    --main-bg: #FFFFFF;
+    --text-main: #1E2233;
+    --text-muted: #5B6072;
+    --border: #E4E4EA;
+    --font-body: 'Inter', 'Segoe UI', Arial, sans-serif;
+    --font-head: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text-main);
+    background: #F1F1F4;
+    display: flex;
+    justify-content: center;
+    padding: 24px 12px;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 940px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    background: var(--main-bg);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  }
+
+  /* ---------- SIDEBAR ---------- */
+  .sidebar {
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    padding: 40px 28px;
+  }
+
+  .avatar {
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--sidebar-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-head);
+    font-size: 34px;
+    font-weight: 600;
+    margin: 0 auto 20px;
+  }.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+  .sidebar h1 {
+    font-family: var(--font-head);
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .sidebar .role {
+    text-align: center;
+    color: var(--accent);
+    font-size: 13px;
+    margin-top: 6px;
+    letter-spacing: 0.2px;
+  }
+
+  .side-section { margin-top: 34px; }
+
+  .side-section h2 {
+    font-family: var(--font-head);
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--accent);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--sidebar-muted);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .contact-item span.icon {
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .skill-group { margin-bottom: 16px; }
+
+  .skill-group h3 {
+    font-size: 12px;
+    color: var(--sidebar-muted);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--sidebar-text);
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+
+  .lang-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--sidebar-muted);
+    margin-bottom: 8px;
+  }
+
+  .lang-row span:last-child { color: var(--sidebar-text); }
+
+  /* ---------- MAIN ---------- */
+  .main {
+    padding: 44px 44px 44px 40px;
+  }
+
+  .main-section { margin-bottom: 32px; }
+
+  .main-section h2 {
+    font-family: var(--font-head);
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: var(--text-main);
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+
+  .summary p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 62ch;
+  }
+
+  .entry { margin-bottom: 20px; }
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+  }
+
+  .entry-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .entry-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .entry-date {
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .tag-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 11px;
+    background: #F1EDE3;
+    color: #8A6D2F;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  ul.bullets {
+    margin-top: 8px;
+    padding-left: 18px;
+  }
+
+  ul.bullets li {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  code.inline {
+    background: #F1EDE3;
+    color: #8A6D2F;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12.5px;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 24px;
+  }
+
+  /* ---------- PRINT ---------- */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; max-width: 100%; }
+  }
+
+  @media (max-width: 720px) {
+    .page { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="avatar"><img src="me.jpg" alt="Your Name"></div> <!-- replace with initials, or swap for an <img> photo -->
+    <h1>THEERAWAT CHIMKOOL</h1>
+    <div class="role">Science in Mathematics with Computer Science Student</div>
+
+    <div class="side-section">
+      <h2>Contact</h2>
+      <div class="contact-item"><span class="icon">✉</span><span>s6704022610177@email.kmutnb.ac.th</span></div>
+      <div class="contact-item"><span class="icon">☎</span><span>092-651-6394</span></div>
+      <div class="contact-item"><span class="icon">📍</span><span>Bangkok, Thailand</span></div>
+      <div class="contact-item"><span class="icon">🔗</span><span>github.com/Theerawat1311</span></div>
+      
+    </div>
+
+    <div class="side-section">
+      <h2>Skills</h2>
+      <div class="skill-group">
+        <h3>Programming</h3>
+        <div class="pill-row">
+          <span class="pill">Python</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">SQL</span>
+          <span class="pill">Java</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Tools</h3>
+        <div class="pill-row">
+          <span class="pill">Git</span>
+          <span class="pill">Figma</span>
+          <span class="pill">Excel</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Soft Skills</h3>
+        <div class="pill-row">
+          <span class="pill">Analytical Thinking</span>
+          <span class="pill">Teamwork</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-section">
+      <h2>Languages</h2>
+      <div class="lang-row"><span>Thai</span><span>Native</span></div>
+      <div class="lang-row"><span>English</span><span>Good (TOEIC 750)</span></div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <main class="main">
+
+    <section class="main-section summary">
+      <h2>PROFESSIONAL SUMMARY</h2>
+      <p>
+        A highly motivated Mathematics and Computer Science student with a strong foundation in logical reasoning, algorithms, and quantitative analysis. 
+        Passionate about applying mathematical concepts and programming skills to develop efficient software and solve complex problems. 
+        Eager to contribute academic knowledge and practical project experience to a dynamic tech environment.
+      </p>
+    </section>
+
+    <section class="main-section">
+      <h2>Education</h2>
+      <div class="entry">
+        <div class="entry-top">
+          <div>
+            <div class="entry-title">King Mongkut's University of Technology North Bangkok</div>
+            <div class="entry-sub">Bachelor of Science in Mathematics with Computer Science</div>
+          </div>
+          <div class="entry-date">2022 – 2026 · GPA 2.XX</div>
+        </div>
+        <ul class="bullets">
+          <li>Relevant coursework: Data Structures & Algorithms, Databases, Object-Oriented Programming, Numerical Analysis</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Projects</h2>
+
+      <div class="entry">
+        <div class="entry-top">
+          <div class="entry-title">Crazy Mine Sweeper Game</div>
+          <div class="entry-date"></div>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">Algorithms</span>
+        </div>
+        <ul class="bullets">
+          <li>Engineered a dynamic version of the classic logic puzzle game, integrating grid traversal algorithms.</li>
+          <li>Applied recursive functions to efficiently process and reveal empty adjacent cells on the game board.</li>
+          <li>Designed the user interface and handled complex game logic including win/loss condition checking and mine placement randomization.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <div class="entry-title">FOCUS TIMER</div>
+          <div class="entry-date"></div>
+        </div>
+        <div class="tag-row">
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">Web App</span>
+        </div>
+        <ul class="bullets">
+          <li>Implemented customizable work/break intervals and session-history tracking for the user</li>
+          <li>Iterated on the UI/UX through AI-assisted prototyping to refine layout and interaction flow</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <div class="entry-title">Government Open Data</div>
+          <div class="entry-date"></div>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Java</span>
+          <span class="tag">Swing</span>
+          <span class="tag">REST API</span>
+          <span class="tag">JSON</span>
+        </div>
+        <ul class="bullets">
+          <li>Developed a Java desktop application that fetches and parses JSON data from a public government API</li>
+          <li>Built modular panels — Dashboard, Trend Graph, Comparison Chart, History, and Report — to visualize and summarize the data</li>
+          <li>Structured the codebase to separate data-fetching, processing, and UI logic for easier maintenance</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Activities / Awards</h2>
+      <ul class="bullets">
+        <li>Member, Computer Science Student Club — helped organize a beginner coding workshop for freshmen</li>
+      </ul>
+    </section>
+
+  </main>
+</div>
+</body>
+</html>
